@@ -6,7 +6,6 @@ import java.util.concurrent.Future;
 
 import java.util.List;
 import java.util.ArrayList;
-//import java.util.Date;
 
 public class CallableClass implements Callable<Integer>
 {
@@ -42,7 +41,6 @@ public class CallableClass implements Callable<Integer>
         for(Future<Integer> fut : list){
             try {
                 sum += fut.get();
-                //System.out.println(new Date()+ "::"+fut.get());
             } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
