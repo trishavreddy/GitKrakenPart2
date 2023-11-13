@@ -3,6 +3,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.time.Duration; 
+import java.time.Instant; 
 
 import java.util.List;
 import java.util.ArrayList;
@@ -34,6 +36,8 @@ public class CallableClass implements Callable<Integer>
 
         
         Callable<Integer> callable = new CallableClass();
+        Instant startTime = Instant.now(); 
+
         for(int i=0; i< 100; i++){
             Future<Integer> future = executor.submit(callable);
             list.add(future);
@@ -47,7 +51,11 @@ public class CallableClass implements Callable<Integer>
         }
         //shut down the executor service now
         executor.shutdown();
+
+        Instant endTime = Instant.now(); 
+        Duration interval = Duration.between(startTime, endTime);
         System.out.println("Sum: "+sum);
+        System.out.println("Time taken: "+interval.toMillis()+" milliseconds");
     }
     
 
